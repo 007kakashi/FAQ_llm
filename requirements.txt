@@ -6,6 +6,6 @@ faiss-cpu==1.7.4
 protobuf==3.20.3
 google-generativeai
 InstructorEmbedding
-dotenv
+# dotenv
 torch
 sentence_transformers
