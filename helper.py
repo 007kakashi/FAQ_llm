@@ -4,15 +4,17 @@ from langchain.document_loaders import CSVLoader
 from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import pandas as pd
 import os
 
-load_dotenv()
+# load_dotenv()
 
-faiss_path = os.path.abspath("C:\\ML Projects\\LLM - Projects\\FAQ_llm\\faiss_index")
+faiss_path = "faiss_index"
 
-api = os.environ['GOOGLE_API_KEY']
+# api = os.environ['GOOGLE_API_KEY']
+
+api = 'AIzaSyD4Z1lotSMedQAqb762WMkhc88CASZMAr0'
 
 llm = GooglePalm(google_api_key= api, temperature=0.8)
 
@@ -27,9 +29,9 @@ def create_vector_db():
 
             data = loader.load()
 
-            vectorstore = FAISS.from_documents(documents= data, embedding= embedding)
+            # vectorstore = FAISS.from_documents(documents= data, embedding= embedding)
 
-            vectorstore.save_local(faiss_path)
+            # vectorstore.save_local(os.makedirs(faiss_path, exist_ok=True))
         
         except Exception as e:
             print(f"An error occurred while saving the vectorstore: {e}")
@@ -61,9 +63,9 @@ def get_qa_chain():
 
 
 if __name__ == "__main__":
-        create_vector_db()
-        # q = get_qa_chain()
-        # print(q("what is the javascript course fees").get('result'))
+        create_vector_db() 
+        q = get_qa_chain()
+        print(q("what is the javascript course fees").get('result'))
 
 
         
